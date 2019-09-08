@@ -110,17 +110,13 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-    #if swift(>=4.2.1)
-        return "swift-4.2.1"
-    #elseif swift(>=4.2)
-        #if compiler(>=5.0)
-            return "swift-5.0"
-        #else
-            return "swift-4.2"
-        #endif
-    #else
-        fatalError("Swift 4.2 or later is required!")
-    #endif
+#if compiler(>=5.1)
+    return "swift-5.1"
+#elseif compiler(>=5.0)
+    return "swift-5.0"
+#else
+    return "swift-4.2"
+#endif
 }()
 
 class SwiftDocsTests: XCTestCase {
