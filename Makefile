@@ -107,13 +107,13 @@ update_clang_headers:
 update_commandant_fixtures: update_commandant_fixtures_macos update_commandant_fixtures_docker
 
 update_commandant_fixtures_macos:
-	for identifier in org.swift.40320171205a org.swift.41220180531a ; do \
+	for identifier in org.swift.50120190418a org.swift.5120190905a ; do \
 		swift package reset ; \
 		OVERWRITE_FIXTURES=1 xcrun --toolchain $$identifier swift test --filter Commandant ; \
 	done
 
 update_commandant_fixtures_docker:
-	for image in norionomura/swift:403 norionomura/swift:412 norionomura/swift:4220180706a ; do \
+	for image in swift:4.2.4 swift:5.0 norionomura/swift:swift-5.1-branch; do \
 		swift package reset ; \
 		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test --filter Commandant ; \
 	done
